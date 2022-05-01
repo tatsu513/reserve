@@ -1,8 +1,13 @@
-import "ress";
-import type { AppProps } from "next/app";
+import 'ress';
+import { Container } from '@mui/material';
+import type { AppProps } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Container>
+      <Component {...pageProps} />
+    </Container>
+  );
 }
 
 export default MyApp;

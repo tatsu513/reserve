@@ -9,7 +9,14 @@
   "plugins": ["@typescript-eslint", "react"],
   "rules": {
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["warn"],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
     "no-use-before-define": "off",
     "import/order": [
       "error",
@@ -18,6 +25,13 @@
           "order": "asc"
         }
       }
-    ]
+    ],
+    "react/jsx-no-bind": [
+      "error",
+      {
+        "allowArrowFunctions": false
+      }
+    ],
+    "no-param-reassign": "error"
   }
 }
