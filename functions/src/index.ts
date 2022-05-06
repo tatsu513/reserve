@@ -6,7 +6,7 @@ const { ApolloServer } = require('apollo-server-express');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://reserve-manager-c58ed-default-rtdb.firebaseio.com',
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
 });
 
 import { resolvers } from './resolver';
@@ -24,4 +24,4 @@ server.start().then(() => {
   server.applyMiddleware({ app, path: '/', cors: true });
 });
 
-exports.graphql = functions.https.onRequest(app);
+exports.graphql = functions.region('asia-northeast1').https.onRequest(app);

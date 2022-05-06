@@ -6,9 +6,5 @@ export const resolvers = {
       const users = await admin.firestore().collection('users').get();
       return users.docs.map((user) => user.data());
     },
-    async user() {
-      const users = await admin.firestore().collection('users').get();
-      return users.docs[0].data();
-    },
   },
 };
