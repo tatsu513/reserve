@@ -1,27 +1,27 @@
-const express = require('express');
-const admin = require('firebase-admin');
-const functions = require('firebase-functions');
-const serviceAccount = require('../reserve-manager-c58ed-firebase-adminsdk-sg0oo-0cd6bd2922.json');
-const { ApolloServer } = require('apollo-server-express');
+import * as admin from 'firebase-admin';
+import * as functions from 'firebase-functions';
+import { ApolloServer } from 'apollo-server-express';
+import resolvers from './resolvers';
+import typeDefs from './typeDefs';
+import { ServiceAccount } from 'firebase-admin';
+import serviceAccount from '../reserve-manager-c58ed-firebase-adminsdk-sg0oo-0cd6bd2922.json';
+import express from 'express';
 
+// 環境変数を読み込み
+const config = functions.config();
+const env = config['fb'];
+
+// 初期化
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  credential: admin.credential.cert(serviceAccount as ServiceAccount),
+  databaseURL: env.database_url,
 });
 
-import { resolvers } from './resolver';
-import { typeDefs } from './typeDefs';
-
-// サーバーを起動する
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  introspection: true,
-});
-
+// サーバーを立てる
 const app = express();
+const server = new ApolloServer({ typeDefs, resolvers });
 server.start().then(() => {
   server.applyMiddleware({ app, path: '/', cors: true });
 });
 
-exports.graphql = functions.region('asia-northeast1').https.onRequest(app);
+export const graphql = functions.region('asia-northeast1').https.onRequest(app);

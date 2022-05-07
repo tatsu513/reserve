@@ -9,13 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.1",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@firebase/firestore": "^3.4.8",
     "@mui/material": "^5.6.3",
     "firebase": "^9.7.0",
-    "graphql": "^16.4.0",
     "next": "12.1.5",
     "react": "18.1.0",
     "react-dom": "18.1.0",

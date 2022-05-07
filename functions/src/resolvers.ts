@@ -1,6 +1,6 @@
 import * as admin from 'firebase-admin';
 
-export const resolvers = {
+const resolvers = {
   Query: {
     async users() {
       const users = await admin.firestore().collection('users').get();
@@ -8,3 +8,5 @@ export const resolvers = {
     },
   },
 };
+
+export default resolvers;
