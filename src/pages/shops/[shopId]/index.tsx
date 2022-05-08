@@ -1,12 +1,8 @@
-import { collection } from '@firebase/firestore';
 import { Box, Typography } from '@mui/material';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import React, { useCallback, useState } from 'react';
 import shopData from '../../../../shopData';
-import { db } from '../../../firebase';
 import PlanBox from 'components/PlanBox';
-
-const colRef = collection(db, 'users'); // 例
 
 type Plan = {
   name: string;
@@ -21,9 +17,6 @@ type Props = {
 
 const Index: NextPage<Props> = ({ name, address, plans }) => {
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
-
-  console.log({ colRef });
-
   const selectPlan = useCallback((plan: Plan) => {
     setSelectedPlan(plan);
   }, []);
