@@ -1,8 +1,8 @@
 type Query {
-  users: Users
+  users: [User!]!
 }
 
-type Users {
+type User {
   id: ID!
   name: String
 }

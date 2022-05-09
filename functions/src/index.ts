@@ -7,8 +7,8 @@ import { ServiceAccount } from 'firebase-admin';
 import serviceAccount from '../reserve-manager-c58ed-firebase-adminsdk-sg0oo-0cd6bd2922.json';
 import express from 'express';
 
-//import { readFileSync } from 'fs';
-// const typeDefs = readFileSync('graphql/schema.graphql', 'utf8');
+// import { readFileSync } from 'fs';
+// const typeDefs = readFileSync('./functions/src/schema.graphql', 'utf8');
 
 // 環境変数を読み込み
 const config = functions.config();

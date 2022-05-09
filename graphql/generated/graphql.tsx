@@ -18,11 +18,11 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  users?: Maybe<Users>;
+  users: Array<User>;
 };
 
-export type Users = {
-  __typename?: 'Users';
+export type User = {
+  __typename?: 'User';
   id: Scalars['ID'];
   name?: Maybe<Scalars['String']>;
 };
@@ -30,7 +30,7 @@ export type Users = {
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UsersQuery = { __typename?: 'Query', users?: { __typename?: 'Users', id: string, name?: string | null } | null };
+export type UsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: string, name?: string | null }> };
 
 
 
@@ -105,7 +105,7 @@ export type ResolversTypes = {
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
-  Users: ResolverTypeWrapper<Users>;
+  User: ResolverTypeWrapper<User>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -114,14 +114,14 @@ export type ResolversParentTypes = {
   ID: Scalars['ID'];
   Query: {};
   String: Scalars['String'];
-  Users: Users;
+  User: User;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  users?: Resolver<Maybe<ResolversTypes['Users']>, ParentType, ContextType>;
+  users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
 };
 
-export type UsersResolvers<ContextType = any, ParentType extends ResolversParentTypes['Users'] = ResolversParentTypes['Users']> = {
+export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -129,7 +129,7 @@ export type UsersResolvers<ContextType = any, ParentType extends ResolversParent
 
 export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
-  Users?: UsersResolvers<ContextType>;
+  User?: UserResolvers<ContextType>;
 };
 
 
