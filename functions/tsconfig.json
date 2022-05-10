@@ -13,6 +13,6 @@
     "moduleResolution": "node"
   },
   "compileOnSave": true,
-  "include": ["src"],
+  "include": ["src", "graphql"],
   "baseUrl": "./"
 }

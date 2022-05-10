@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import {
   User,
   UserListPageDocument,
-} from '../../../functions/src/graphql/generated/graphql';
+} from '../../../functions/graphql/generated/graphql';
 
 const fetcher = (query: RequestDocument) =>
   request(process.env.NEXT_PUBLIC_BACKEND_URL as string, query);

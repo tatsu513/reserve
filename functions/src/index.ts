@@ -2,10 +2,10 @@ import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import { ApolloServer } from 'apollo-server-express';
 import resolvers from './resolvers';
-import typeDefs from './typeDefs';
 import { ServiceAccount } from 'firebase-admin';
 import serviceAccount from '../reserve-manager-c58ed-firebase-adminsdk-sg0oo-0cd6bd2922.json';
 import express from 'express';
+import { readFileSync } from 'fs';
 
 // 環境変数を読み込み
 const config = functions.config();
@@ -15,6 +15,10 @@ const env = config['fb'];
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount as ServiceAccount),
   databaseURL: env.database_url,
+});
+
+const typeDefs = readFileSync(process.cwd() + '/graphql/schema.graphql', {
+  encoding: 'utf8',
 });
 
 // サーバーを立てる

@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-import { User, UserListPageResponse } from '../graphql/generated/graphql';
+import { User, UserListPageResponse } from '../../graphql/generated/graphql';
 
 async function userListPageResolver(): Promise<UserListPageResponse> {
   const backendUsers = await admin.firestore().collection('users').get();
