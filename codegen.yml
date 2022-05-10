@@ -1,8 +1,8 @@
 overwrite: true
-schema: 'graphql/schema.graphql'
-documents: 'graphql/**/*.ts'
+schema: 'functions/src/graphql/schema.graphql'
+documents: 'functions/src/graphql/**/*.ts'
 generates:
-  graphql/generated/graphql.tsx:
+  functions/src/graphql/generated/graphql.ts:
     plugins:
       - 'typescript'
       - 'typescript-operations'

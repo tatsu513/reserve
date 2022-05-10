@@ -18,7 +18,7 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  users: Array<User>;
+  userListPage: UserListPageResponse;
 };
 
 export type User = {
@@ -27,10 +27,15 @@ export type User = {
   name?: Maybe<Scalars['String']>;
 };
 
-export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
+export type UserListPageResponse = {
+  __typename?: 'UserListPageResponse';
+  users: Array<User>;
+};
+
+export type UserListPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: string, name?: string | null }> };
+export type UserListPageQuery = { __typename?: 'Query', userListPage: { __typename?: 'UserListPageResponse', users: Array<{ __typename?: 'User', id: string, name?: string | null }> } };
 
 
 
@@ -106,6 +111,7 @@ export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   User: ResolverTypeWrapper<User>;
+  UserListPageResponse: ResolverTypeWrapper<UserListPageResponse>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -115,10 +121,11 @@ export type ResolversParentTypes = {
   Query: {};
   String: Scalars['String'];
   User: User;
+  UserListPageResponse: UserListPageResponse;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
+  userListPage?: Resolver<ResolversTypes['UserListPageResponse'], ParentType, ContextType>;
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
@@ -127,45 +134,53 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type UserListPageResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['UserListPageResponse'] = ResolversParentTypes['UserListPageResponse']> = {
+  users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
+  UserListPageResponse?: UserListPageResponseResolvers<ContextType>;
 };
 
 
 
-export const UsersDocument = gql`
-    query Users {
-  users {
-    id
-    name
+export const UserListPageDocument = gql`
+    query UserListPage {
+  userListPage {
+    users {
+      id
+      name
+    }
   }
 }
     `;
 
 /**
- * __useUsersQuery__
+ * __useUserListPageQuery__
  *
- * To run a query within a React component, call `useUsersQuery` and pass it any options that fit your needs.
- * When your component renders, `useUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useUserListPageQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserListPageQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useUsersQuery({
+ * const { data, loading, error } = useUserListPageQuery({
  *   variables: {
  *   },
  * });
  */
-export function useUsersQuery(baseOptions?: Apollo.QueryHookOptions<UsersQuery, UsersQueryVariables>) {
+export function useUserListPageQuery(baseOptions?: Apollo.QueryHookOptions<UserListPageQuery, UserListPageQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<UsersQuery, UsersQueryVariables>(UsersDocument, options);
+        return Apollo.useQuery<UserListPageQuery, UserListPageQueryVariables>(UserListPageDocument, options);
       }
-export function useUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsersQuery, UsersQueryVariables>) {
+export function useUserListPageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserListPageQuery, UserListPageQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<UsersQuery, UsersQueryVariables>(UsersDocument, options);
+          return Apollo.useLazyQuery<UserListPageQuery, UserListPageQueryVariables>(UserListPageDocument, options);
         }
-export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
-export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
-export type UsersQueryResult = Apollo.QueryResult<UsersQuery, UsersQueryVariables>;
+export type UserListPageQueryHookResult = ReturnType<typeof useUserListPageQuery>;
+export type UserListPageLazyQueryHookResult = ReturnType<typeof useUserListPageLazyQuery>;
+export type UserListPageQueryResult = Apollo.QueryResult<UserListPageQuery, UserListPageQueryVariables>;
