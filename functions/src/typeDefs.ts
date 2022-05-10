@@ -3,7 +3,7 @@ import { DocumentNode } from 'graphql';
 
 const typeDefs: DocumentNode = gql`
   type Query {
-    userPage: [User!]
+    userListPage: [User!]
   }
 
   type User {

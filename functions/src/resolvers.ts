@@ -1,9 +1,9 @@
-import userPageResolver from './resolvers/userPageResolver';
+import userListPageResolver from './resolvers/userListPageResolver';
 
 const resolvers = {
   Query: {
-    userPage: async () => {
-      return await userPageResolver();
+    userListPage: async () => {
+      return await userListPageResolver();
     },
   },
 };
