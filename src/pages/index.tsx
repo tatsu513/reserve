@@ -1,8 +1,8 @@
+import useUserListPage from 'hooks/fetch/useUserListPage';
 import type { NextPage } from 'next';
-import useUserPage from 'hooks/fetch/useUserPage';
 
 const Home: NextPage = () => {
-  const { data, error } = useUserPage();
+  const { data, error } = useUserListPage();
   if (error) return <p>Error: {JSON.stringify(error)}</p>;
   console.log({ data });
   return (
