@@ -1,10 +1,9 @@
-import * as admin from 'firebase-admin';
+import userPageResolver from './resolvers/userPageResolver';
 
 const resolvers = {
   Query: {
-    async userPage() {
-      const users = await admin.firestore().collection('users').get();
-      return users.docs.map((user) => user.data());
+    userPage: async () => {
+      return await userPageResolver();
     },
   },
 };
