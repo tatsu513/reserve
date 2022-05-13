@@ -18,13 +18,14 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  userListPage: UserListPageResponse;
+  hello: Scalars['String'];
+  userListPage?: Maybe<UserListPageResponse>;
 };
 
 export type User = {
   __typename?: 'User';
-  id: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export type UserListPageResponse = {
@@ -35,7 +36,7 @@ export type UserListPageResponse = {
 export type UserListPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UserListPageQuery = { __typename?: 'Query', userListPage: { __typename?: 'UserListPageResponse', users: Array<{ __typename?: 'User', id: string, name?: string | null }> } };
+export type UserListPageQuery = { __typename?: 'Query', userListPage?: { __typename?: 'UserListPageResponse', users: Array<{ __typename?: 'User', id: string, name: string }> } | null };
 
 
 
@@ -107,7 +108,6 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  ID: ResolverTypeWrapper<Scalars['ID']>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   User: ResolverTypeWrapper<User>;
@@ -117,7 +117,6 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
-  ID: Scalars['ID'];
   Query: {};
   String: Scalars['String'];
   User: User;
@@ -125,12 +124,13 @@ export type ResolversParentTypes = {
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  userListPage?: Resolver<ResolversTypes['UserListPageResponse'], ParentType, ContextType>;
+  hello?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  userListPage?: Resolver<Maybe<ResolversTypes['UserListPageResponse']>, ParentType, ContextType>;
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 

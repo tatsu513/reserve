@@ -1,0 +1,13 @@
+type Query {
+  hello: String!
+  userListPage: UserListPageResponse
+}
+
+type UserListPageResponse {
+  users: [User!]!
+}
+
+type User {
+  id: String!
+  name: String!
+}
